@@ -5,7 +5,7 @@ const authRegister = require('./Routes/register')
 const authLogin = require('./Routes/login.js')
 const addProductToCart = require('./Routes/addProduct.js')
 
-const url = 'mongodb+srv://tuannhat:passworb@cluster0.j1alluq.mongodb.net/?retryWrites=true&w=majority'
+const url = process.env.dbUrl
 const dbName = 'GFU-STORE'
 const my_database = new Database(url, dbName)
 
