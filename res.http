@@ -1,0 +1,23 @@
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "fullname": "altn",
+    "username": "tuannhat",
+    "password": "1234",
+    "repeat": "1234",
+    "email": "a",
+    "phone": "09"
+}
+
+###
+GET http://localhost:5000/
+
+###
+POST http://localhost:5000/auth/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2FjNjQwNjJjMGU5NDJkNDEwYThhZTIiLCJpYXQiOjE2NzIyNDIxODJ9.q8JMSAxYmjfRZxtfWhxeKT0WBFXwYTeXsuKetzpfM14
+
+{
+    "productId": 14
+}
