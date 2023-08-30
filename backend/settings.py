@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-v$!g7j07^^t50u1p9)z($_i4d^&3z0_xw=*d$(l3^k+)jybqn0"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY"
+)  # "django-insecure-v$!g7j07^^t50u1p9)z($_i4d^&3z0_xw=*d$(l3^k+)jybqn0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -79,12 +83,16 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db3.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db3.sqlite3",
+#     }
+# }
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL"
+)  # "postgres://gfu_store_db_user:0e8EesjqWf4KQlidhqVvUqFhCEEZKnRz@dpg-cjncc3eqdesc738uqec0-a.singapore-postgres.render.com/gfu_store_db"
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
 
 
 # Password validation
@@ -122,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
