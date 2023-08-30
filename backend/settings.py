@@ -89,9 +89,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 #         "NAME": BASE_DIR / "db3.sqlite3",
 #     }
 # }
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL"
-)  # "postgres://gfu_store_db_user:0e8EesjqWf4KQlidhqVvUqFhCEEZKnRz@dpg-cjncc3eqdesc738uqec0-a.singapore-postgres.render.com/gfu_store_db"
+DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
 
 
